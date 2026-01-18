@@ -12,3 +12,5 @@ This Python script connects to the SMB share, listens for change notifications, 
 3. Rename `config.toml.example` to `config.toml`
 4. Update `config.toml` your SMB share details, Plex details, etc. Follow the comments in the file for hints.
 5. Run `main.py`
+6. Profit
+
