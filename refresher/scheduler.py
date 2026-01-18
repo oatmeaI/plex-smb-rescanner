@@ -43,7 +43,11 @@ class Scheduler:
 
             should_scan = True
             for other_dir in self.scan_dirs:
-                if dir in other_dir and dir != other_dir:
+                if (
+                    dir in other_dir
+                    and dir != other_dir
+                    and os.path.isdir(self.make_path(other_dir))
+                ):
                     should_scan = False
                     print(f"Skipping {dir} because there's a more specific path\n")
                     break
