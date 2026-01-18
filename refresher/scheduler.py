@@ -9,6 +9,7 @@ class Scheduler:
     timer = None
     scan_dirs = []
 
+    timeout = 2
     library_path = ""
     ignore_paths = []
     section_map = {}
@@ -26,6 +27,7 @@ class Scheduler:
         self.rescan_actions = data["rescan_actions"]
         self.plex_address = data["plex_address"]
         self.plex_token = data["plex_token"]
+        self.timeout = data["timeout"] if "timeout" in data else self.timeout
 
     def run_scan(self):
         print("Running queue")
@@ -93,5 +95,5 @@ class Scheduler:
         if self.timer is not None:
             self.timer.cancel()
 
-        self.timer = Timer(10, self.run_scan)
+        self.timer = Timer(self.timeout, self.run_scan)
         self.timer.start()

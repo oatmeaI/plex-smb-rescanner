@@ -7,6 +7,7 @@ ignore_paths = ["eaDir"]                    # Any strings that should cause a ch
 rescan_actions = ["ADDED", "REMOVED"]       # If empty, any filesystem change will trigger a scan; can probably be left empty. See smb.py:98 for possible options
 plex_address = "https://192.168.0.0:32400"  # Address to your Plex server
 plex_token = "..."                          # X-Plex-Token - see https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/
+timeout = 2                                 # Not required. How long to wait between change notifications and scans. If you're seeing only partial content showing up in Plex, try increasing this number.
 
 [section_map]                               # Map of folder names to Plex library section IDs
 music = "1"
