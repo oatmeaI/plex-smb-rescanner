@@ -1,0 +1,15 @@
+server = "192.168.0.0"                      # SMB server IP address or hostname
+share = "media"                             # SMB share name (without \\server\ prefix)
+username = "username"                       # SMB username
+password = "password"                       # SMB password
+library_path = "/Path/to/plex/media"        # Absolute path that your Plex server finds your media at.
+ignore_paths = ["eaDir"]                    # Any strings that should cause a change to be ignored; eaDir is something that shows up on my Synology NAS a lot.
+rescan_actions = ["ADDED", "REMOVED"]       # If empty, any filesystem change will trigger a scan; can probably be left empty. See smb.py:98 for possible options
+plex_address = "https://192.168.0.0:32400"  # Address to your Plex server
+plex_token = "..."                          # X-Plex-Token - see https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/
+
+[section_map]                               # Map of folder names to Plex library section IDs
+music = "1"
+movies = "2"
+tv = "3"
+videos = "4"
