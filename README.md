@@ -14,3 +14,7 @@ This Python script connects to the SMB share, listens for change notifications, 
 5. Run `main.py`
 6. Profit
 
+### Pior Art
+The SMB logic is heavily adapted from https://github.com/undone37/smb-change-monitor
+
+
