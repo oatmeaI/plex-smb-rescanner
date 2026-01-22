@@ -301,7 +301,7 @@ def watch(callback):
                     action_code, f"UNKNOWN (Code: {action_code})"
                 )
 
-                print(f"[{action_str}] {filename}")
+                # print(f"[{action_str}] {filename}")
                 callback(filename, action_str)
 
         except KeyboardInterrupt:

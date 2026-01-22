@@ -24,7 +24,7 @@ class Scheduler:
         self.library_path = data["library_path"]
         self.ignore_paths = data["ignore_paths"]
         self.section_map = data["section_map"]
-        self.rescan_actions = data["rescan_actions"]
+        self.rescan_actions = data["rescan_actions"] if "rescan_actions" in data else []
         self.plex_address = data["plex_address"]
         self.plex_token = data["plex_token"]
         self.timeout = data["timeout"] if "timeout" in data else self.timeout
@@ -59,7 +59,7 @@ class Scheduler:
             qs = urllib.parse.urlencode(
                 {"path": self.make_path(dir), "X-Plex-Token": self.plex_token}
             )
-            url = f"{self.plex_address}/library/sections/{section}/refresh?{qs}"
+            url = f"{self.plex_address}/library/sections/{section}/refresh?{qs}&force=1"
             print(url)
             urllib.request.urlopen(url).read()
             print(f"Scanned {dir}\n")
@@ -77,19 +77,21 @@ class Scheduler:
                 return
 
         if len(self.rescan_actions) > 0 and action not in self.rescan_actions:
-            print(f"Ignoring {action}\n")
+            # print(f"Ignoring {action}\n")
             return
 
         full_path = self.make_path(dir)
         if os.path.splitext(full_path)[-1] != "":
-            print(f"Ignoring {full_path} because it is not a folder\n")
-            return
+            dir = os.path.split(dir.replace("\\", "/"))[0]
+            # print(os.path.split(dir.replace("\\", "/")))
+            # print(f"Ignoring {full_path} because it is not a folder\n")
+            # return
 
         if dir in self.scan_dirs:
             print(f"Ignoring {dir} because it is already queued\n")
             return
 
-        print(f"Queueing {dir}...")
+        print(f"Queueing [{action}] {dir}...\n")
         self.scan_dirs.append(dir)
 
         if self.timer is not None:
